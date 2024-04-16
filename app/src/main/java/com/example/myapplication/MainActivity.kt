@@ -40,8 +40,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun AuroraCinemaScreen() {
     val backgroundColor = ContextCompat.getColor(LocalContext.current, R.color.background)
-    val buttonColor = ContextCompat.getColor(LocalContext.current, R.color.button_color)
-    val grayColor = ContextCompat.getColor(LocalContext.current, R.color.gray_color)
+    val whiteColor = ContextCompat.getColor(LocalContext.current, R.color.white)
+    val blackColor = ContextCompat.getColor(LocalContext.current, R.color.black)
 
     Surface(modifier = Modifier.fillMaxSize(), color = Color(backgroundColor)) {
         Column(
@@ -53,9 +53,9 @@ fun AuroraCinemaScreen() {
         ) {
             CinemaHeader()
             Spacer(modifier = Modifier.weight(1f))
-            CinemaButton(text = "Zaloguj się", color = grayColor)
+            CinemaButton(text = "Zaloguj się", color = whiteColor, text_color = blackColor)
             Spacer(modifier = Modifier.height(10.dp))
-            CinemaButton(text = "Zarejestruj się", color = grayColor)
+            CinemaButton(text = "Zarejestruj się", color = whiteColor, text_color = blackColor)
         }
     }
 }
@@ -81,15 +81,16 @@ fun CinemaHeader() {
 
 
 @Composable
-fun CinemaButton(text: String, color: Int) {
+fun CinemaButton(text: String, color: Int, text_color: Int) {
     Button(
         onClick = { },
         colors = ButtonDefaults.buttonColors(Color(color)),
+
         modifier = Modifier
             .size(width = 250.dp, height = 100.dp)
             .padding(bottom = 16.dp)
     ) {
-        Text(text = text, fontSize = 20.sp)
+        Text(text = text, fontSize = 20.sp, color = Color(text_color))
     }
 }
 
