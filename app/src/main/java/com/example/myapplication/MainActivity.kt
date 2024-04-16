@@ -69,7 +69,7 @@ fun CinemaHeader() {
         Image(
             painter = painterResource(R.drawable.logo),
             contentDescription = "Cinema Logo",
-            modifier = Modifier.size(150.dp)
+            modifier = Modifier.size(230.dp)
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
@@ -87,8 +87,8 @@ fun CinemaButton(text: String, color: Int, text_color: Int) {
         colors = ButtonDefaults.buttonColors(Color(color)),
 
         modifier = Modifier
-            .size(width = 250.dp, height = 100.dp)
-            .padding(bottom = 16.dp)
+            .size(width = 250.dp, height = 70.dp)
+            .padding(bottom = 0.dp)
     ) {
         Text(text = text, fontSize = 20.sp, color = Color(text_color))
     }
