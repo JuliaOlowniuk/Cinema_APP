@@ -26,19 +26,27 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.compose.runtime.remember
 import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyApplicationTheme {
-                val navController = rememberNavController() // Inicjalizacja NavController
-                AuroraCinemaScreen(navController)
+            val navController = rememberNavController()
+            NavHost(navController = navController, startDestination = "auroraapp") {
+                composable("auroraapp") {
+                    AuroraCinemaScreen(navController)
+                }
+                composable("home") {
+                    HomePage()
+                }
             }
         }
     }
 }
+
 
 @Composable
 fun AuroraCinemaScreen(navController: NavController) {
@@ -61,16 +69,19 @@ fun AuroraCinemaScreen(navController: NavController) {
                 color = whiteColor,
                 textColor = blackColor
             ) {
-                navController.navigate("HomePage") // Nawigacja do HomePage po kliknięciu przycisku "Zaloguj się"
+                navController.navigate("home")
             }
+
             Spacer(modifier = Modifier.height(10.dp))
+
             CinemaButton(
                 text = "Zarejestruj się",
                 color = whiteColor,
                 textColor = blackColor
             ) {
-                navController.navigate("HomePage") // Nawigacja do HomePage po kliknięciu przycisku "Zarejestruj się"
+                navController.navigate(R.id.action_auroraapp_to_home)
             }
+
         }
     }
 }

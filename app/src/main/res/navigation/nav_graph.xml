@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/auroraapp">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.example.myapplication.HomePage"
+        android:label="HomePage">
+    </fragment>
+    <fragment
+        android:id="@+id/auroraapp"
+        android:name="com.example.myapplication.MainActivity"
+        android:label="MainActivity">
+        <action
+            android:id="@+id/action_auroraapp_to_home"
+            app:destination="@id/home" />
+    </fragment>
+</navigation>
