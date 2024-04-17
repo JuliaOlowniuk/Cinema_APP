@@ -30,6 +30,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.unit.Dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+
 class HomePage : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +46,8 @@ class HomePage : ComponentActivity() {
 fun AuroraCinemaScreenContent() {
     val backgroundColor = Color(R.color.background)
     val logoSize = 100.dp // zmniejszamy rozmiar logo
+    val whiteColor = Color(R.color.white)
+    val blackColor = Color(R.color.black)
 
     Surface(modifier = Modifier.fillMaxSize(), color = backgroundColor) {
         Column(
@@ -54,6 +57,33 @@ fun AuroraCinemaScreenContent() {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Button(
+                    onClick = { /* Akcja po kliknięciu */ },
+                    modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                ) {
+                    Text(
+                        text = "Regulamin",
+                        color = Color.White, // Zmiana koloru tekstu na biały
+                        fontSize = 12.sp
+                    )
+                }
+
+                Button(
+                    onClick = { /* Akcja po kliknięciu */ },
+                    modifier = Modifier.padding(end = 16.dp, top = 16.dp)
+                ) {
+                    Text(
+                        text = "PL/ENG",
+                        color = Color.White, // Zmiana koloru tekstu na biały
+                        fontSize = 12.sp
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(16.dp))
             CinemaHeaderContent(logoSize)
             Spacer(modifier = Modifier.weight(1f))
             Row(
@@ -98,4 +128,3 @@ fun CinemaHeaderContent(logoSize: Dp) {
         )
     }
 }
-
