@@ -25,6 +25,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
+import androidx.compose.runtime.remember
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +56,8 @@ fun AuroraCinemaScreen() {
         ) {
             CinemaHeader()
             Spacer(modifier = Modifier.weight(1f))
-            CinemaButton(text = "Zaloguj się", color = whiteColor, text_color = blackColor)
+            CinemaButton(text = "Zaloguj się", color = whiteColor, text_color = blackColor
+            )
             Spacer(modifier = Modifier.height(10.dp))
             CinemaButton(text = "Zarejestruj się", color = whiteColor, text_color = blackColor)
         }
