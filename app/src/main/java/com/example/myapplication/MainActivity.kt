@@ -1,5 +1,4 @@
 package com.example.myapplication
-
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -34,19 +33,20 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApplicationTheme {
-                AuroraCinemaScreen()
+                val navController = rememberNavController() // Inicjalizacja NavController
+                AuroraCinemaScreen(navController)
             }
         }
     }
 }
 
 @Composable
-fun AuroraCinemaScreen() {
-    val backgroundColor = ContextCompat.getColor(LocalContext.current, R.color.background)
-    val whiteColor = ContextCompat.getColor(LocalContext.current, R.color.white)
-    val blackColor = ContextCompat.getColor(LocalContext.current, R.color.black)
+fun AuroraCinemaScreen(navController: NavController) {
+    val backgroundColor = Color(R.color.background)
+    val whiteColor = Color(R.color.white)
+    val blackColor = Color(R.color.black)
 
-    Surface(modifier = Modifier.fillMaxSize(), color = Color(backgroundColor)) {
+    Surface(modifier = Modifier.fillMaxSize(), color = backgroundColor) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -56,10 +56,21 @@ fun AuroraCinemaScreen() {
         ) {
             CinemaHeader()
             Spacer(modifier = Modifier.weight(1f))
-            CinemaButton(text = "Zaloguj się", color = whiteColor, text_color = blackColor
-            )
+            CinemaButton(
+                text = "Zaloguj się",
+                color = whiteColor,
+                textColor = blackColor
+            ) {
+                navController.navigate("HomePage") // Nawigacja do HomePage po kliknięciu przycisku "Zaloguj się"
+            }
             Spacer(modifier = Modifier.height(10.dp))
-            CinemaButton(text = "Zarejestruj się", color = whiteColor, text_color = blackColor)
+            CinemaButton(
+                text = "Zarejestruj się",
+                color = whiteColor,
+                textColor = blackColor
+            ) {
+                navController.navigate("HomePage") // Nawigacja do HomePage po kliknięciu przycisku "Zarejestruj się"
+            }
         }
     }
 }
@@ -78,23 +89,22 @@ fun CinemaHeader() {
         Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = "Aurora Cinema",
-            fontSize = 40.sp
+            fontSize = 40.sp,
+            color = Color.White
         )
     }
 }
 
-
 @Composable
-fun CinemaButton(text: String, color: Int, text_color: Int) {
+fun CinemaButton(text: String, color: Color, textColor: Color, onClick: () -> Unit) {
     Button(
-        onClick = { },
-        colors = ButtonDefaults.buttonColors(Color(color)),
-
+        onClick = onClick,
+        colors = ButtonDefaults.buttonColors(contentColor = textColor),
         modifier = Modifier
             .size(width = 250.dp, height = 70.dp)
             .padding(bottom = 0.dp)
     ) {
-        Text(text = text, fontSize = 20.sp, color = Color(text_color))
+        Text(text = text, fontSize = 20.sp)
     }
 }
 
