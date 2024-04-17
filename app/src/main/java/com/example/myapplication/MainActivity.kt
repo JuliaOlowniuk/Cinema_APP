@@ -69,7 +69,7 @@ fun CinemaHeader() {
         Image(
             painter = painterResource(R.drawable.logo),
             contentDescription = "Cinema Logo",
-            modifier = Modifier.size(230.dp)
+            modifier = Modifier.size(210.dp)
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
