@@ -5,8 +5,10 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -53,14 +55,32 @@ fun AuroraCinemaScreenContent() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             CinemaHeaderContent(logoSize)
+            Spacer(modifier = Modifier.weight(1f))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 16.dp, bottom = 16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "Regulamin",
+                    fontSize = 12.sp,
+                    color = Color.Black,
+                    modifier = Modifier.padding(start = 8.dp, bottom = 8.dp)
+                )
+                Text(
+                    text = "Kontakt",
+                    fontSize = 12.sp,
+                    color = Color.Black,
+                    modifier = Modifier.padding(end = 8.dp, bottom = 8.dp)
+                )
+            }
         }
     }
 }
 
 @Composable
 fun CinemaHeaderContent(logoSize: Dp) {
-    val context = LocalContext.current
-
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.padding(bottom = 250.dp)
@@ -78,5 +98,4 @@ fun CinemaHeaderContent(logoSize: Dp) {
         )
     }
 }
-
 
