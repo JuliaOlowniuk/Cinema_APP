@@ -49,13 +49,13 @@ fun LoginPageContent() {
                 style = h4,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
-            var username by remember { mutableStateOf("") }
+            var loginOrEmail by remember { mutableStateOf("") }
             var password by remember { mutableStateOf("") }
 
             TextField(
-                value = username,
-                onValueChange = { username = it },
-                label = { Text("Login") },
+                value = loginOrEmail,
+                onValueChange = { loginOrEmail = it },
+                label = { Text("Login lub Email") },
                 modifier = Modifier.padding(bottom = 16.dp),
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Text)
             )
