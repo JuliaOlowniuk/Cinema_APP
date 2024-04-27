@@ -1,4 +1,3 @@
-package com.example.myapplication
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -50,14 +49,24 @@ fun RegisterPageContent() {
                 style = h4,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
-            var username by remember { mutableStateOf("") }
+            var firstName by remember { mutableStateOf("") }
+            var lastName by remember { mutableStateOf("") }
             var email by remember { mutableStateOf("") }
+            var phoneNumber by remember { mutableStateOf("") }
             var password by remember { mutableStateOf("") }
 
             TextField(
-                value = username,
-                onValueChange = { username = it },
-                label = { Text("Login") },
+                value = firstName,
+                onValueChange = { firstName = it },
+                label = { Text("Imię") },
+                modifier = Modifier.padding(bottom = 16.dp),
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Text)
+            )
+
+            TextField(
+                value = lastName,
+                onValueChange = { lastName = it },
+                label = { Text("Nazwisko") },
                 modifier = Modifier.padding(bottom = 16.dp),
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Text)
             )
@@ -68,6 +77,14 @@ fun RegisterPageContent() {
                 label = { Text("Email") },
                 modifier = Modifier.padding(bottom = 16.dp),
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Email)
+            )
+
+            TextField(
+                value = phoneNumber,
+                onValueChange = { phoneNumber = it },
+                label = { Text("Numer telefonu") },
+                modifier = Modifier.padding(bottom = 16.dp),
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Phone)
             )
 
             TextField(
@@ -87,4 +104,3 @@ fun RegisterPageContent() {
         }
     }
 }
-
