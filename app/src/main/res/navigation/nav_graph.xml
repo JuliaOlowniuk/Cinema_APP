@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@+id/auroraapp">
+    app:startDestination="@id/MainActivityFragment">
 
     <fragment
-        android:id="@+id/home"
-        android:name="com.example.myapplication.HomePage"
-        android:label="HomePage">
+        android:id="@+id/MainActivityFragment"
+        android:name="com.example.myapplication.MainActivityFragment"
+        android:label="fragment_main_activity"
+        tools:layout="@layout/fragment_main_activity" >
+        <action
+            android:id="@+id/action_mainActivityFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
     </fragment>
     <fragment
-        android:id="@+id/auroraapp"
-        android:name="com.example.myapplication.MainActivity"
-        android:label="MainActivity">
-        <action
-            android:id="@+id/action_auroraapp_to_home"
-            app:destination="@id/home" />
-    </fragment>
+        android:id="@+id/homePageFragment"
+        android:name="com.example.myapplication.HomePageFragment"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" />
 </navigation>
