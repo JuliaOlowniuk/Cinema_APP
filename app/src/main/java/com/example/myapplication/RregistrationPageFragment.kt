@@ -8,18 +8,17 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
 
-class HomePageFragment : Fragment() {
+class RregistrationPageFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view =  inflater.inflate(R.layout.fragment_home_page, container, false)
-        val buttonkontakt = view.findViewById<Button>(R.id.button_kontakt)
-        buttonkontakt.setOnClickListener{
-            findNavController().navigate(R.id.action_homePageFragment_to_contactPageFragment)
+        val view =  inflater.inflate(R.layout.fragment_rregistration_page, container, false)
+        val buttonregister = view.findViewById<Button>(R.id.registerButton)
+        buttonregister.setOnClickListener{
+            findNavController().navigate(R.id.action_rregistrationPageFragment_to_homePageFragment)
         }
-
         return view
     }
 

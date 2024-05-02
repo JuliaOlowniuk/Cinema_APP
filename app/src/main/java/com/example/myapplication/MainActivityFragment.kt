@@ -16,9 +16,13 @@ class MainActivityFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view =  inflater.inflate(R.layout.fragment_main_activity, container, false)
-        val button = view.findViewById<Button>(R.id.loginbutton)
-        button.setOnClickListener{
-            findNavController().navigate(R.id.action_mainActivityFragment_to_homePageFragment)
+        val buttonlogin = view.findViewById<Button>(R.id.loginbutton)
+        buttonlogin.setOnClickListener{
+            findNavController().navigate(R.id.action_MainActivityFragment_to_loginPageFragment2)
+        }
+        val buttonregister = view.findViewById<Button>(R.id.registerbutton)
+        buttonregister.setOnClickListener{
+            findNavController().navigate(R.id.action_MainActivityFragment_to_rregistrationPageFragment)
         }
         return view
     }

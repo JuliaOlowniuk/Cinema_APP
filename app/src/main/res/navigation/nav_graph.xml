@@ -11,12 +11,42 @@
         android:label="fragment_main_activity"
         tools:layout="@layout/fragment_main_activity" >
         <action
-            android:id="@+id/action_mainActivityFragment_to_homePageFragment"
-            app:destination="@id/homePageFragment" />
+            android:id="@+id/action_MainActivityFragment_to_loginPageFragment2"
+            app:destination="@id/loginPageFragment2" />
+        <action
+            android:id="@+id/action_MainActivityFragment_to_rregistrationPageFragment"
+            app:destination="@id/rregistrationPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/homePageFragment"
         android:name="com.example.myapplication.HomePageFragment"
         android:label="fragment_home_page"
-        tools:layout="@layout/fragment_home_page" />
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_homePageFragment_to_contactPageFragment"
+            app:destination="@id/contactPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginPageFragment2"
+        android:name="com.example.myapplication.LoginPageFragment"
+        android:label="fragment_login_page"
+        tools:layout="@layout/fragment_login_page" >
+        <action
+            android:id="@+id/action_loginPageFragment2_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rregistrationPageFragment"
+        android:name="com.example.myapplication.RregistrationPageFragment"
+        android:label="fragment_rregistration_page"
+        tools:layout="@layout/fragment_rregistration_page" >
+        <action
+            android:id="@+id/action_rregistrationPageFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactPageFragment"
+        android:name="com.example.myapplication.ContactPageFragment"
+        android:label="fragment_contact_page"
+        tools:layout="@layout/fragment_contact_page" />
 </navigation>
