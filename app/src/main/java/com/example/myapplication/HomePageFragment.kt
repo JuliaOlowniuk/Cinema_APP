@@ -20,6 +20,20 @@ class HomePageFragment : Fragment() {
             findNavController().navigate(R.id.action_homePageFragment_to_contactPageFragment)
         }
 
+        val buttonuser = view.findViewById<Button>(R.id.button_user)
+        buttonuser.setOnClickListener{
+            findNavController().navigate(R.id.action_homePageFragment_to_userProfileFragment2)
+        }
+
+        val buttonoffer = view.findViewById<Button>(R.id.button_offer)
+        buttonoffer.setOnClickListener{
+            findNavController().navigate(R.id.action_homePageFragment_to_offerFragment)
+        }
+
+        val repertuarbutton = view.findViewById<Button>(R.id.button_repertuar)
+        repertuarbutton.setOnClickListener{
+            findNavController().navigate(R.id.action_homePageFragment_to_repertuarFragment)
+        }
         return view
     }
 

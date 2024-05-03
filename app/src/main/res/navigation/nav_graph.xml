@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/MainActivityFragment"
         android:name="com.example.myapplication.MainActivityFragment"
-        android:label="fragment_main_activity"
+        android:label="Ekran główny"
         tools:layout="@layout/fragment_main_activity" >
         <action
             android:id="@+id/action_MainActivityFragment_to_loginPageFragment2"
@@ -20,33 +20,149 @@
     <fragment
         android:id="@+id/homePageFragment"
         android:name="com.example.myapplication.HomePageFragment"
-        android:label="fragment_home_page"
+        android:label="Strona Główna"
         tools:layout="@layout/fragment_home_page" >
         <action
             android:id="@+id/action_homePageFragment_to_contactPageFragment"
             app:destination="@id/contactPageFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_userProfileFragment2"
+            app:destination="@id/userProfileFragment2" />
+        <action
+            android:id="@+id/action_homePageFragment_to_offerFragment"
+            app:destination="@id/offerFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_repertuarFragment"
+            app:destination="@id/repertuarFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginPageFragment2"
         android:name="com.example.myapplication.LoginPageFragment"
-        android:label="fragment_login_page"
+        android:label="Logowanie"
         tools:layout="@layout/fragment_login_page" >
         <action
             android:id="@+id/action_loginPageFragment2_to_homePageFragment"
             app:destination="@id/homePageFragment" />
+        <action
+            android:id="@+id/action_loginPageFragment2_to_MainActivityFragment"
+            app:destination="@id/MainActivityFragment"
+            app:popUpTo="@id/MainActivityFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/rregistrationPageFragment"
         android:name="com.example.myapplication.RregistrationPageFragment"
-        android:label="fragment_rregistration_page"
+        android:label="Rejestracja"
         tools:layout="@layout/fragment_rregistration_page" >
         <action
             android:id="@+id/action_rregistrationPageFragment_to_homePageFragment"
             app:destination="@id/homePageFragment" />
+        <action
+            android:id="@+id/action_rregistrationPageFragment_to_MainActivityFragment"
+            app:destination="@id/MainActivityFragment"
+            app:popUpTo="@id/MainActivityFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/contactPageFragment"
         android:name="com.example.myapplication.ContactPageFragment"
-        android:label="fragment_contact_page"
-        tools:layout="@layout/fragment_contact_page" />
+        android:label="Kontakt"
+        tools:layout="@layout/fragment_contact_page" >
+        <action
+            android:id="@+id/action_contactPageFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment"
+            app:popUpTo="@id/homePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userProfileFragment2"
+        android:name="com.example.myapplication.UserProfileFragment"
+        android:label="Profil"
+        tools:layout="@layout/fragment_user_profile" >
+        <action
+            android:id="@+id/action_userProfileFragment2_to_homePageFragment"
+            app:destination="@id/homePageFragment"
+            app:popUpTo="@id/homePageFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/offerFragment"
+        android:name="com.example.myapplication.OfferFragment"
+        android:label="Oferta"
+        tools:layout="@layout/fragment_offer" >
+        <action
+            android:id="@+id/action_offerFragment_to_barFragment"
+            app:destination="@id/barFragment" />
+        <action
+            android:id="@+id/action_offerFragment_to_giftCardFragment"
+            app:destination="@id/giftCardFragment" />
+        <action
+            android:id="@+id/action_offerFragment_to_ticketFragment"
+            app:destination="@id/ticketFragment" />
+        <action
+            android:id="@+id/action_offerFragment_to_repertuarFragment"
+            app:destination="@id/repertuarFragment" />
+        <action
+            android:id="@+id/action_offerFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment"
+            app:popUpTo="@id/homePageFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/barFragment"
+        android:name="com.example.myapplication.BarFragment"
+        android:label="Bar"
+        tools:layout="@layout/fragment_bar" >
+        <action
+            android:id="@+id/action_barFragment_to_offerFragment"
+            app:destination="@id/offerFragment"
+            app:popUpTo="@id/offerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/giftCardFragment"
+        android:name="com.example.myapplication.GiftCardFragment"
+        android:label="Karty podarunkowe"
+        tools:layout="@layout/fragment_gift_card" >
+        <action
+            android:id="@+id/action_giftCardFragment_to_offerFragment"
+            app:destination="@id/offerFragment"
+            app:popUpTo="@id/offerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketFragment"
+        android:name="com.example.myapplication.TicketFragment"
+        android:label="Bilety"
+        tools:layout="@layout/fragment_ticket" >
+        <action
+            android:id="@+id/action_ticketFragment_to_offerFragment"
+            app:destination="@id/offerFragment"
+            app:popUpTo="@id/offerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/reservationFragment"
+        android:name="com.example.myapplication.ReservationFragment"
+        android:label="Rezerwacja"
+        tools:layout="@layout/fragment_reservation" >
+        <action
+            android:id="@+id/action_reservationFragment_to_repertuarFragment"
+            app:destination="@id/repertuarFragment"
+            app:popUpTo="@id/repertuarFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/repertuarFragment"
+        android:name="com.example.myapplication.RepertuarFragment"
+        android:label="Repertuar"
+        tools:layout="@layout/fragment_repertuar" >
+        <action
+            android:id="@+id/action_repertuarFragment_to_reservationFragment"
+            app:destination="@id/reservationFragment" />
+        <action
+            android:id="@+id/action_repertuarFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment"
+            app:popUpTo="@id/homePageFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

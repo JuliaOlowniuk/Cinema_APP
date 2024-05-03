@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ekran"
+        android:textColor="@android:color/white"
+        android:background="@android:color/darker_gray"
+        android:padding="16dp"
+        android:layout_gravity="center"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp"/>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:rowCount="8"
+        android:columnCount="10"
+        android:orientation="horizontal">
+
+        <!-- Static data for demonstration purposes -->
+        <!-- Loop to create seats -->
+        <!-- Remember to replace the static content with dynamic content based on your logic -->
+
+    </GridLayout>
+
+</LinearLayout>
