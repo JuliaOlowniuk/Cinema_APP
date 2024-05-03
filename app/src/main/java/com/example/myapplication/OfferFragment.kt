@@ -24,10 +24,6 @@ class OfferFragment : Fragment() {
             findNavController().navigate(R.id.action_offerFragment_to_barFragment)
         }
 
-        val reservationbutton = view.findViewById<Button>(R.id.button_Reservation)
-        reservationbutton.setOnClickListener{
-            findNavController().navigate(R.id.action_offerFragment_to_repertuarFragment)
-        }
 
         val giftcardbutton = view.findViewById<Button>(R.id.button_GiftCards)
         giftcardbutton.setOnClickListener{

@@ -168,6 +168,6 @@
     <fragment
         android:id="@+id/regulaminFragment"
         android:name="com.example.myapplication.RegulaminFragment"
-        android:label="fragment_regulamin"
+        android:label="Regulamin"
         tools:layout="@layout/fragment_regulamin" />
 </navigation>
