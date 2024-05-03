@@ -99,9 +99,6 @@
             android:id="@+id/action_offerFragment_to_ticketFragment"
             app:destination="@id/ticketFragment" />
         <action
-            android:id="@+id/action_offerFragment_to_repertuarFragment"
-            app:destination="@id/repertuarFragment" />
-        <action
             android:id="@+id/action_offerFragment_to_homePageFragment"
             app:destination="@id/homePageFragment"
             app:popUpTo="@id/homePageFragment"

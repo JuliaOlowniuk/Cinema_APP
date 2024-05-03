@@ -30,13 +30,6 @@
         android:layout_marginBottom="16dp"/>
 
     <Button
-        android:id="@+id/button_Reservation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Rezerwacja"
-        android:layout_marginBottom="16dp"/>
-
-    <Button
         android:id="@+id/button_GiftCards"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
