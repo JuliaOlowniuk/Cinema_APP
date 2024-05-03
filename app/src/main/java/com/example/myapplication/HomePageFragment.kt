@@ -34,6 +34,11 @@ class HomePageFragment : Fragment() {
         repertuarbutton.setOnClickListener{
             findNavController().navigate(R.id.action_homePageFragment_to_repertuarFragment)
         }
+
+        val regulaminbutton = view.findViewById<Button>(R.id.button_regulamin)
+        regulaminbutton.setOnClickListener{
+            findNavController().navigate(R.id.action_homePageFragment_to_regulaminFragment)
+        }
         return view
     }
 

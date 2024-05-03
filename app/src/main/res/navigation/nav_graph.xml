@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_repertuarFragment"
             app:destination="@id/repertuarFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_regulaminFragment"
+            app:destination="@id/regulaminFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginPageFragment2"
@@ -162,4 +165,9 @@
             app:popUpTo="@id/homePageFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/regulaminFragment"
+        android:name="com.example.myapplication.RegulaminFragment"
+        android:label="fragment_regulamin"
+        tools:layout="@layout/fragment_regulamin" />
 </navigation>
