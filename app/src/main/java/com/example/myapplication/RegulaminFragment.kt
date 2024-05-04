@@ -20,7 +20,7 @@ class RegulaminFragment : Fragment() {
         val webView = view.findViewById<WebView>(R.id.webView)
 
         // Load local PDF file from assets folder
-        webView.loadUrl("file:///android_asset/regulamin_kina_aurora.pdf")
+        webView.loadUrl("file:///android_asset/regulamin_kina_aurora.jpg")
 
         return view
     }
