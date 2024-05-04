@@ -25,14 +25,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Rodzaj biletu"
-            android:textSize="25sp"
+            android:textSize="30sp"
             android:textStyle="bold"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="25sp"
+            android:textSize="30sp"
             android:text="Cena"
             android:textStyle="bold"/>
     </LinearLayout>
@@ -52,14 +52,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:text="Normalny"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:text="10.00"/>
     </LinearLayout>
     <LinearLayout
@@ -71,14 +71,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:text="Ulgowy"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:text="8.00"/>
     </LinearLayout>
     <LinearLayout
@@ -90,14 +90,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:text="Senior"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:text="7.00"/>
     </LinearLayout>
     <LinearLayout
@@ -109,14 +109,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:text="Dziecięcy"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:text="5.00"/>
     </LinearLayout>
 

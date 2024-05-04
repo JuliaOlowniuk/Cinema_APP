@@ -9,7 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Logowanie"
-        android:textSize="24sp"
+        android:textSize="35sp"
+        android:textStyle="bold"
         android:layout_gravity="center"
         android:layout_marginBottom="16dp"/>
 
@@ -18,12 +19,14 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="Login lub Email"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:textSize="25sp" />
 
     <EditText
         android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:textSize="25sp"
         android:hint="Hasło"
         android:inputType="textPassword"/>
 
@@ -31,7 +34,8 @@
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Zaloguj się"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:text="Zaloguj się"
+        android:textSize="25sp" />
 </LinearLayout>

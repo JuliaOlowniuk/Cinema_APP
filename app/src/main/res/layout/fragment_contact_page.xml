@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Kontakt"
-        android:textSize="24sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         android:layout_marginBottom="16dp"/>
 
@@ -18,28 +18,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ul. Filmowa 1\n04-935 Warszawa"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:layout_marginBottom="8dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Numer telefonu kina: 123456789"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:layout_marginBottom="8dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Numer telefonu pomocy technicznej: 987654321"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:layout_marginBottom="32dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Znajdź nas!"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         android:layout_marginBottom="16dp"/>
 
