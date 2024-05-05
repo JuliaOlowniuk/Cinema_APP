@@ -21,7 +21,8 @@
         android:layout_height="wrap_content"
         android:text="Bilety"
         android:textSize="25sp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_button"/>
 
     <Button
         android:id="@+id/button_Bar"
@@ -29,13 +30,15 @@
         android:layout_height="wrap_content"
         android:text="Bar"
         android:textSize="25sp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_button"/>
 
     <Button
         android:id="@+id/button_GiftCards"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25sp"
-        android:text="Karty podarunkowe"/>
+        android:text="Karty podarunkowe"
+        android:background="@drawable/rounded_button"/>
 
 </LinearLayout>

@@ -56,10 +56,11 @@
 
     <Button
         android:id="@+id/registerButton"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Zarejestruj się"
         android:layout_gravity="center"
         android:textSize="25sp"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_button"/>
 </LinearLayout>

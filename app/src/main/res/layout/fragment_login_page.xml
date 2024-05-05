@@ -32,10 +32,11 @@
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:text="Zaloguj się"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:background="@drawable/rounded_button"/>
 </LinearLayout>
