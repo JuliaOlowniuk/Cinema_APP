@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import java.net.URLEncoder
 class ContactPageFragment : Fragment() {
 
     override fun onCreateView(
@@ -22,8 +23,13 @@ class ContactPageFragment : Fragment() {
         // Ustaw klienta WebView, aby strony były wyświetlane w samym WebView, a nie w przeglądarce zewnętrznej
         webView.webViewClient = WebViewClient()
 
+        // Konstruuj URL z adresem kina
+        val address = "Filmowa 1, 04-935 Warszawa"
+        val encodedAddress = URLEncoder.encode(address, "UTF-8")
+        val url = "https://www.google.com/maps?q=$encodedAddress"
+
         // Załaduj URL mapy w WebView
-        webView.loadUrl("https://www.google.com/maps")
+        webView.loadUrl(url)
 
         return rootView
     }
