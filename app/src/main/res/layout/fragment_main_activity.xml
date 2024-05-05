@@ -34,7 +34,8 @@
             android:text="Zaloguj się"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_button"/>
 
         <Space
             android:layout_width="match_parent"
@@ -49,6 +50,7 @@
             android:textSize="20sp"
             android:textColor="@color/white"
             android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_button"
             />
 
     </LinearLayout>
