@@ -50,7 +50,7 @@ class GiftCardFragment : Fragment() {
                 reader.close()
 
 
-                standardowaTextView.text = "Response Data: $response"
+                standardowaTextView.text = "Response"
             } else {
                 println("Error: Unable to fetch data from the API")
             }
