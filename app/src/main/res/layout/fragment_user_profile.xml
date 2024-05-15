@@ -80,4 +80,14 @@
         android:text="Ocena"
         android:background="@drawable/rounded_button"/>
 
+    <Button
+        android:id="@+id/buttonLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="230dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_button"
+        android:text="Wyloguj"
+        android:textSize="25sp"/>
+
 </LinearLayout>
