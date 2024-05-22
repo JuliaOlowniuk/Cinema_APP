@@ -28,7 +28,7 @@ class GiftCardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val apiUrl = "http://localhost:8081/prices/giftcard"
-        val standardowaTextView = view.findViewById<TextView>(R.id.standardowa_text)
+        /*val standardowaTextView = view.findViewById<TextView>(R.id.standardowa_text)
         try {
             val url : URL = URI.create(apiUrl).toURL()
             val connection : HttpURLConnection = url.openConnection() as HttpURLConnection
@@ -58,7 +58,7 @@ class GiftCardFragment : Fragment() {
             connection.disconnect()
         } catch (e: Exception) {
             e.printStackTrace()
-        }
+        }*/
 
     }
 
