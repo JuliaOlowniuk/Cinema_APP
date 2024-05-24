@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -47,7 +48,7 @@ class LoginPageFragment : Fragment() {
                             findNavController().navigate(R.id.action_loginPageFragment2_to_homePageFragment)
                         } else {
                             Log.e("LoginPageFragment", "Login failed: $response")
-                            val loginfailed = view.findViewById<Button>(R.id.loginfailed)
+                            val loginfailed = view.findViewById<TextView>(R.id.loginfailed)
                             loginfailed.text = "Bledne haslo!"
                         }
                     } catch (e: Exception) {
@@ -57,7 +58,7 @@ class LoginPageFragment : Fragment() {
                 { error ->
                     Log.e("LoginPageFragment", "Request error: ${error.message}")
                     if (error.networkResponse != null && error.networkResponse.statusCode == 401) {
-                        val loginFailedButton = view.findViewById<Button>(R.id.loginfailed)
+                        val loginFailedButton = view.findViewById<TextView>(R.id.loginfailed)
                         loginFailedButton.text = "Błędne hasło!"
                     }
                 }) {

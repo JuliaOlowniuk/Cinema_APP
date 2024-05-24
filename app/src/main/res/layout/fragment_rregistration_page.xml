@@ -53,6 +53,13 @@
         android:hint="Hasło"
         android:textSize="25sp"
         android:inputType="textPassword"/>
+    <EditText
+        android:id="@+id/confirmpasswordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Powtorz haslo"
+        android:textSize="25sp"
+        android:inputType="textPassword"/>
 
     <Button
         android:id="@+id/registerButton"
@@ -63,4 +70,12 @@
         android:textSize="25sp"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_button"/>
+    <TextView
+        android:id="@+id/registerfailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="35sp"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
 </LinearLayout>
