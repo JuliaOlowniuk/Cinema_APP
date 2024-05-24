@@ -40,22 +40,20 @@ class BarFragment : Fragment() {
             { response ->
                 try {
                     val jsonObject = JSONObject(response)
-                    val pricepopcorn = jsonObject.getString("popcorn")
-                    val pricenachos = jsonObject.getString("nachos")
-                    val pricecola = jsonObject.getString("cola")
-                    val pricesok = jsonObject.getString("sok")
-                    popcornPriceTextView.text = pricepopcorn
-                    nachosPriceTextView.text = pricenachos
-                    colaPriceTextView.text = pricecola
-                    sokPriceTextView.text = pricesok
+                    val popcorn_price = jsonObject.getString("popcorn")
+                    val nachos_price = jsonObject.getString("nachos")
+                    val cola_price = jsonObject.getString("cola")
+                    val sok_price = jsonObject.getString("sok")
+                    popcornPriceTextView.text = popcorn_price
+                    nachosPriceTextView.text = nachos_price
+                    colaPriceTextView.text = cola_price
+                    sokPriceTextView.text = sok_price
                 } catch (e: Exception) {
                     Log.e("BarFragment", "Error parsing JSON: ${e.message}")
-                    popcornPriceTextView.text = "Error parsing JSON!"
                 }
             },
             { error ->
                 Log.e("BarFragment", "Request error: ${error.message}")
-                popcornPriceTextView.text = "That didn't work!"
             })
 
         queue.add(stringRequest)

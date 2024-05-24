@@ -61,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" "
+            android:text="Standardowa"
             android:textSize="25dp"/>
 
         <TextView
@@ -88,7 +88,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="100.00"
+            android:id="@+id/vip_price"
             android:textSize="25dp"/>
     </LinearLayout>
     <LinearLayout
@@ -107,7 +107,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="25.00"
+            android:id="@+id/dladzieci_price"
             android:textSize="25dp"/>
     </LinearLayout>
     <LinearLayout
@@ -126,7 +126,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="30.00"
+            android:id="@+id/dlasieniorow_price"
             android:textSize="25dp"/>
     </LinearLayout>
 
