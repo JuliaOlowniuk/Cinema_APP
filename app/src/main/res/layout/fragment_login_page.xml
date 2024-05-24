@@ -39,4 +39,12 @@
         android:text="Zaloguj się"
         android:textSize="25sp"
         android:background="@drawable/rounded_button"/>
+    <TextView
+        android:id="@+id/loginfailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"/>
 </LinearLayout>
