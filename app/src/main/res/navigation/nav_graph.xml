@@ -89,6 +89,9 @@
         <action
             android:id="@+id/action_userProfileFragment2_to_loginPageFragment2"
             app:destination="@id/loginPageFragment2" />
+        <action
+            android:id="@+id/action_userProfileFragment2_to_historyFragment"
+            app:destination="@id/historyFragment" />
     </fragment>
     <fragment
         android:id="@+id/offerFragment"
@@ -173,4 +176,9 @@
         android:name="com.example.myapplication.RegulaminFragment"
         android:label="Regulamin"
         tools:layout="@layout/fragment_regulamin" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.myapplication.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
 </navigation>

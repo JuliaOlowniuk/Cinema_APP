@@ -78,6 +78,10 @@ class UserProfileFragment : Fragment() {
         buttonloggout.setOnClickListener{
             findNavController().navigate(R.id.action_userProfileFragment2_to_loginPageFragment2)
         }
+        val buttonhistory = view.findViewById<Button>(R.id.buttonHistory)
+        buttonhistory.setOnClickListener{
+            findNavController().navigate(R.id.action_userProfileFragment2_to_historyFragment)
+        }
         return view
     }
 

@@ -48,12 +48,12 @@ class GiftCardFragment : Fragment() {
                     dladzieciPriceTextView.text = dladzieci_price
                     dlaseniorowPriceTextView.text = dlasieniorow_price
                 } catch (e: Exception) {
-                    Log.e("BarFragment", "Error parsing JSON: ${e.message}")
+                    Log.e("GiftCardFragment", "Error parsing JSON: ${e.message}")
 
                 }
             },
             { error ->
-                Log.e("BarFragment", "Request error: ${error.message}")
+                Log.e("GiftCardFragment", "Request error: ${error.message}")
             })
 
         queue.add(stringRequest)
