@@ -1,53 +1,90 @@
 package com.example.myapplication
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.webkit.JavascriptInterface
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import android.widget.Button
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RepertuarFragment : Fragment() {
 
-    @SuppressLint("SetJavaScriptEnabled")
+    private lateinit var moviesLayout: LinearLayout
+    private val apiKey = "b86b2f78b9fa1efd17365a41927922e1"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_repertuar, container, false)
-
-        val webView = view.findViewById<WebView>(R.id.webview_repertuar)
+        moviesLayout = view.findViewById(R.id.movies_layout)
         val buttonChooseMovie = view.findViewById<Button>(R.id.button_choose_movie)
 
-        // Konfiguracja WebView
-        val webSettings: WebSettings = webView.settings
-        webSettings.javaScriptEnabled = true
-        webView.webViewClient = WebViewClient()
-        webView.addJavascriptInterface(WebAppInterface(), "Android")
-
-        // Załaduj stronę z repertuarem
-        webView.loadUrl("https://www.google.com/search?q=repertuar+filmowy")
+        fetchAndDisplayMovies()
 
         buttonChooseMovie.setOnClickListener {
+            val selectedMovies = getSelectedMovies()
+            Toast.makeText(activity, "Selected movies: $selectedMovies", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_repertuarFragment_to_reservationFragment)
         }
 
         return view
     }
 
-    private inner class WebAppInterface {
-        @JavascriptInterface
-        fun onMovieSelected(movieTitle: String) {
-            activity?.runOnUiThread {
-                Toast.makeText(activity, "Selected movie: $movieTitle", Toast.LENGTH_SHORT).show()
+    private fun fetchAndDisplayMovies() {
+        RetrofitInstance.api.getNowPlayingMovies(apiKey).enqueue(object : Callback<TMDbResponse> {
+            override fun onResponse(call: Call<TMDbResponse>, response: Response<TMDbResponse>) {
+                if (response.isSuccessful) {
+                    response.body()?.results?.let { movies ->
+                        displayMovies(movies)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<TMDbResponse>, t: Throwable) {
+                Toast.makeText(activity, "Failed to fetch movies", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun displayMovies(movies: List<Movie>) {
+        for (movie in movies) {
+            val movieView = layoutInflater.inflate(R.layout.item_movie, moviesLayout, false)
+            val checkBox = movieView.findViewById<CheckBox>(R.id.movie_checkbox)
+            val imageView = movieView.findViewById<ImageView>(R.id.movie_image)
+            val textView = movieView.findViewById<TextView>(R.id.movie_title)
+
+            textView.text = movie.title
+            Picasso.get().load(movie.posterUrl).into(imageView)
+
+            moviesLayout.addView(movieView)
+        }
+    }
+
+    private fun getSelectedMovies(): List<String> {
+        val selectedMovies = mutableListOf<String>()
+        for (i in 0 until moviesLayout.childCount) {
+            val movieView = moviesLayout.getChildAt(i)
+            val checkBox = movieView.findViewById<CheckBox>(R.id.movie_checkbox)
+            if (checkBox.isChecked) {
+                val textView = movieView.findViewById<TextView>(R.id.movie_title)
+                selectedMovies.add(textView.text.toString())
             }
         }
+        return selectedMovies
     }
 }

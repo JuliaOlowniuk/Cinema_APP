@@ -22,6 +22,10 @@ constraintlayout = "2.1.4"
 fragmentKtx = "1.6.2"
 osmdroidAndroid = "6.1.10"
 volley = "1.2.1"
+okhttp = "4.9.3"
+retrofit = "2.9.0"
+picasso = "2.71828"
+coroutines = "1.5.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -52,6 +56,12 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 osmdroid-android = { module = "org.osmdroid:osmdroid-android", version.ref = "osmdroidAndroid" }
 volley = { module = "com.android.volley:volley", version.ref = "volley" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofitGsonConverter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+picasso = { group = "com.squareup.picasso", name = "picasso", version.ref = "picasso" }
+coroutinesCore = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutinesAndroid = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
