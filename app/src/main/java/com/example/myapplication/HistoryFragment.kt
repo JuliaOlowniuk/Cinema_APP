@@ -38,13 +38,24 @@ class HistoryFragment : Fragment() {
                 try {
                     val jsonObject = JSONObject(response)
                     for (i in 1..jsonObject.length()) {
-                        val film = jsonObject.getString(i.toString())
-                        val textView = TextView(requireContext()).apply {
-                            text = film
+                        val filmObject = jsonObject.getJSONObject(i.toString())
+                        val filmName = filmObject.getString("name")
+                        val dateAdded = filmObject.getString("dateAdded")
+
+                        val filmTextView = TextView(requireContext()).apply {
+                            text = filmName
                             textSize = 25f
-                            setPadding(0, 10, 0, 10)
+                            setPadding(0, 10, 0, 0)
                         }
-                        filmContainer.addView(textView)
+
+                        val dateTextView = TextView(requireContext()).apply {
+                            text = "Data obejrzenia: $dateAdded"
+                            textSize = 16f
+                            setPadding(0, 0, 0, 20)
+                        }
+
+                        filmContainer.addView(filmTextView)
+                        filmContainer.addView(dateTextView)
                     }
                 } catch (e: Exception) {
                     Log.e("HistoryFragment", "Error parsing JSON: ${e.message}")
