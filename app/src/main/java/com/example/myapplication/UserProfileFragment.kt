@@ -82,6 +82,10 @@ class UserProfileFragment : Fragment() {
         buttonhistory.setOnClickListener{
             findNavController().navigate(R.id.action_userProfileFragment2_to_historyFragment)
         }
+        val buttonrating = view.findViewById<Button>(R.id.buttonRating)
+        buttonrating.setOnClickListener{
+            findNavController().navigate(R.id.action_userProfileFragment2_to_ratingFragment)
+        }
         return view
     }
 

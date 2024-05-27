@@ -15,7 +15,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
 
-class HistoryFragment : Fragment() {
+class RatingFragment : Fragment() {
 
     private lateinit var queue: RequestQueue
 
@@ -23,15 +23,14 @@ class HistoryFragment : Fragment() {
         super.onCreate(savedInstanceState)
         queue = Volley.newRequestQueue(requireContext())
     }
-
     @SuppressLint("SetTextI18n", "InflateParams")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_history, container, false)
+        val view = inflater.inflate(R.layout.fragment_rating, container, false)
         val filmContainer = view.findViewById<LinearLayout>(R.id.filmContainer)
-        val url = "http://10.0.2.2:8081/user/history"
+        val url = "http://10.0.2.2:8081/user/ratings"
         val stringRequest = StringRequest(
             Request.Method.GET, url,
             { response ->
@@ -41,6 +40,7 @@ class HistoryFragment : Fragment() {
                         val filmObject = jsonObject.getJSONObject(i.toString())
                         val filmName = filmObject.getString("name")
                         val dateAdded = filmObject.getString("dateAdded")
+                        val rating = filmObject.getString("rating")
 
                         val filmTextView = TextView(requireContext()).apply {
                             text = filmName
@@ -53,9 +53,15 @@ class HistoryFragment : Fragment() {
                             textSize = 20f
                             setPadding(0, 0, 0, 20)
                         }
+                        val ratingTextView = TextView(requireContext()).apply {
+                            text = "Ocena: $rating"
+                            textSize = 20f
+                            setPadding(0, 0, 0, 20)
+                        }
 
                         filmContainer.addView(filmTextView)
                         filmContainer.addView(dateTextView)
+                        filmContainer.addView(ratingTextView)
                     }
                 } catch (e: Exception) {
                     Log.e("HistoryFragment", "Error parsing JSON: ${e.message}")
@@ -68,4 +74,5 @@ class HistoryFragment : Fragment() {
         queue.add(stringRequest)
         return view
     }
+
 }
