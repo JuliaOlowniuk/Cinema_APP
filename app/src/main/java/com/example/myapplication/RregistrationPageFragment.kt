@@ -69,9 +69,9 @@ class RregistrationPageFragment : Fragment() {
                     params["email"] = email
                     params["password"] = password
                     params["confirmPassword"] = confirmPassword
-                    params["imie"] = firstName
-                    params["nazwisko"] = lastName
-                    params["nr_tel"] = phoneNumber
+                    params["name"] = firstName
+                    params["surname"] = lastName
+                    params["phone"] = phoneNumber
                     return params
                 }
             }

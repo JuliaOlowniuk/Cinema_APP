@@ -23,6 +23,7 @@ class RatingFragment : Fragment() {
         super.onCreate(savedInstanceState)
         queue = Volley.newRequestQueue(requireContext())
     }
+
     @SuppressLint("SetTextI18n", "InflateParams")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,43 +37,61 @@ class RatingFragment : Fragment() {
             { response ->
                 try {
                     val jsonObject = JSONObject(response)
-                    for (i in 1..jsonObject.length()) {
-                        val filmObject = jsonObject.getJSONObject(i.toString())
-                        val filmName = filmObject.getString("name")
-                        val dateAdded = filmObject.getString("dateAdded")
-                        val rating = filmObject.getString("rating")
+                    if (jsonObject.has("ratings")) {
+                        val ratingsObject = jsonObject.getJSONObject("ratings")
+                        if (ratingsObject.length() == 0) {
+                            val noRatingsTextView = TextView(requireContext()).apply {
+                                text = "Brak ocen"
+                                textSize = 25f
+                                setPadding(0, 10, 0, 0)
+                            }
+                            filmContainer.addView(noRatingsTextView)
+                        } else {
+                            for (i in 1..ratingsObject.length()) {
+                                val filmObject = ratingsObject.getJSONObject(i.toString())
+                                val filmName = filmObject.getString("nazwa")
+                                val dateAdded = filmObject.getString("data")
+                                val rating = filmObject.getString("ocena")
 
-                        val filmTextView = TextView(requireContext()).apply {
-                            text = filmName
+                                val filmTextView = TextView(requireContext()).apply {
+                                    text = filmName
+                                    textSize = 25f
+                                    setPadding(0, 10, 0, 0)
+                                }
+
+                                val dateTextView = TextView(requireContext()).apply {
+                                    text = "Data obejrzenia: $dateAdded"
+                                    textSize = 20f
+                                    setPadding(0, 0, 0, 20)
+                                }
+                                val ratingTextView = TextView(requireContext()).apply {
+                                    text = "Ocena: $rating"
+                                    textSize = 20f
+                                    setPadding(0, 0, 0, 20)
+                                }
+
+                                filmContainer.addView(filmTextView)
+                                filmContainer.addView(dateTextView)
+                                filmContainer.addView(ratingTextView)
+                            }
+                        }
+                    } else {
+                        val noRatingsTextView = TextView(requireContext()).apply {
+                            text = "Brak ocen"
                             textSize = 25f
                             setPadding(0, 10, 0, 0)
                         }
-
-                        val dateTextView = TextView(requireContext()).apply {
-                            text = "Data obejrzenia: $dateAdded"
-                            textSize = 20f
-                            setPadding(0, 0, 0, 20)
-                        }
-                        val ratingTextView = TextView(requireContext()).apply {
-                            text = "Ocena: $rating"
-                            textSize = 20f
-                            setPadding(0, 0, 0, 20)
-                        }
-
-                        filmContainer.addView(filmTextView)
-                        filmContainer.addView(dateTextView)
-                        filmContainer.addView(ratingTextView)
+                        filmContainer.addView(noRatingsTextView)
                     }
                 } catch (e: Exception) {
-                    Log.e("HistoryFragment", "Error parsing JSON: ${e.message}")
+                    Log.e("RatingFragment", "Error parsing JSON: ${e.message}")
                 }
             },
             { error ->
-                Log.e("HistoryFragment", "Request error: ${error.message}")
+                Log.e("RatingFragment", "Request error: ${error.message}")
             })
 
         queue.add(stringRequest)
         return view
     }
-
 }
