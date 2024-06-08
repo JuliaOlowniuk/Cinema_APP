@@ -34,6 +34,10 @@ class HomePageFragment : Fragment() {
         repertuarbutton.setOnClickListener{
             findNavController().navigate(R.id.action_homePageFragment_to_repertuarFragment)
         }
+        val buttonbuyticket = view.findViewById<Button>(R.id.button_buy)
+        buttonbuyticket.setOnClickListener{
+            findNavController().navigate(R.id.action_homePageFragment_to_buyTicketFragment)
+        }
 
         val regulaminbutton = view.findViewById<Button>(R.id.button_regulamin)
         regulaminbutton.setOnClickListener{

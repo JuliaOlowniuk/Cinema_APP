@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_regulaminFragment"
             app:destination="@id/regulaminFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_buyTicketFragment"
+            app:destination="@id/buyTicketFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginPageFragment2"
@@ -155,19 +158,14 @@
         android:label="Rezerwacja"
         tools:layout="@layout/fragment_reservation" >
         <action
-            android:id="@+id/action_reservationFragment_to_repertuarFragment"
-            app:destination="@id/repertuarFragment"
-            app:popUpTo="@id/repertuarFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_reservationFragment_to_buyTicketFragment"
+            app:destination="@id/buyTicketFragment" />
     </fragment>
     <fragment
         android:id="@+id/repertuarFragment"
         android:name="com.example.myapplication.RepertuarFragment"
         android:label="Repertuar"
         tools:layout="@layout/fragment_repertuar" >
-        <action
-            android:id="@+id/action_repertuarFragment_to_reservationFragment"
-            app:destination="@id/reservationFragment" />
         <action
             android:id="@+id/action_repertuarFragment_to_homePageFragment"
             app:destination="@id/homePageFragment"
@@ -189,4 +187,16 @@
         android:name="com.example.myapplication.RatingFragment"
         android:label="fragment_rating"
         tools:layout="@layout/fragment_rating" />
+    <fragment
+        android:id="@+id/buyTicketFragment"
+        android:name="com.example.myapplication.BuyTicketFragment"
+        android:label="fragment_buy_ticket"
+        tools:layout="@layout/fragment_buy_ticket" >
+        <action
+            android:id="@+id/action_buyTicketFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+        <action
+            android:id="@+id/action_buyTicketFragment_to_reservationFragment"
+            app:destination="@id/reservationFragment" />
+    </fragment>
 </navigation>

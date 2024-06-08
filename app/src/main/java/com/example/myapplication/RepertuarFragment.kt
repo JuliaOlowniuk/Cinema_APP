@@ -32,15 +32,8 @@ class RepertuarFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_repertuar, container, false)
         moviesLayout = view.findViewById(R.id.movies_layout)
-        val buttonChooseMovie = view.findViewById<Button>(R.id.button_choose_movie)
 
         fetchAndDisplayMovies()
-
-        buttonChooseMovie.setOnClickListener {
-            val selectedMovies = getSelectedMovies()
-            Toast.makeText(activity, "Selected movies: $selectedMovies", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_repertuarFragment_to_reservationFragment)
-        }
 
         return view
     }
@@ -64,7 +57,6 @@ class RepertuarFragment : Fragment() {
     private fun displayMovies(movies: List<Movie>) {
         for (movie in movies) {
             val movieView = layoutInflater.inflate(R.layout.item_movie, moviesLayout, false)
-            val checkBox = movieView.findViewById<CheckBox>(R.id.movie_checkbox)
             val imageView = movieView.findViewById<ImageView>(R.id.movie_image)
             val textView = movieView.findViewById<TextView>(R.id.movie_title)
 
