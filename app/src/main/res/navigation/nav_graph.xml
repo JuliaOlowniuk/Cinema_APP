@@ -180,12 +180,12 @@
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.example.myapplication.HistoryFragment"
-        android:label="fragment_history"
+        android:label="Historia"
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/buyTicketFragment"
         android:name="com.example.myapplication.BuyTicketFragment"
-        android:label="fragment_buy_ticket"
+        android:label="Kup bilet"
         tools:layout="@layout/fragment_buy_ticket" >
         <action
             android:id="@+id/action_buyTicketFragment_to_homePageFragment"
@@ -197,6 +197,6 @@
     <fragment
         android:id="@+id/boughtTicketFragment"
         android:name="com.example.myapplication.BoughtTicketFragment"
-        android:label="fragment_bought_ticket"
+        android:label="Twój bilet"
         tools:layout="@layout/fragment_bought_ticket" />
 </navigation>

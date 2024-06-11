@@ -19,7 +19,6 @@ class BoughtTicketFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_bought_ticket, container, false)
         val ticketDetailsTextView: TextView = view.findViewById(R.id.ticket_details)
 
-        // Odczytaj zawartość pliku i wyświetl ją w TextView
         val ticketDetails = readFileContent("selected_movie.txt")
         ticketDetailsTextView.text = ticketDetails
 

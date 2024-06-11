@@ -18,8 +18,11 @@ import com.android.volley.toolbox.Volley
 import org.json.JSONException
 import org.json.JSONObject
 import android.graphics.Color
+import android.widget.EditText
 import android.widget.Toast
+import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
 import java.io.File
 import java.io.FileOutputStream
 import java.io.PrintWriter
@@ -37,24 +40,26 @@ class BuyTicketFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_buy_ticket, container, false)
 
         val buttonChooseMovie = view.findViewById<Button>(R.id.button_choose_movie)
+        val typeEditText = view.findViewById<EditText>(R.id.editText_movie_input)
         moviesLayout = view.findViewById(R.id.movies_layout)
         queue = Volley.newRequestQueue(requireContext())
 
         buttonChooseMovie.setOnClickListener {
             if (selectedMovie != null) {
-                saveSelectedMovieToFile(selectedMovie!!)
+                val type = typeEditText.text.toString()
+                saveSelectedMovieToFile(selectedMovie!!, type)
                 findNavController().navigate(R.id.action_buyTicketFragment_to_reservationFragment)
                 Log.d("dane", selectedMovie!!.toString())
 
-                data class TicketDetails(
+               /* data class TicketDetails(
                     val movie: String,
                     val seatNumber: Int,
-                    val ticketType: String
+                    val ticketType: String,
                 )
+
                 val movie = selectedMovie!!.getString("movieName")
                 val seatNumber = 5
-                val ticketType = "Adult"
-                val ticketDetails = TicketDetails(movie, seatNumber, ticketType)
+                val ticketDetails = TicketDetails(movie, seatNumber, type)
 
                 val url = "http://10.0.2.2:8081/tickets/add"
                 val ticketJson = JSONObject().apply {
@@ -73,7 +78,26 @@ class BuyTicketFragment : Fragment() {
                     }
                 )
 
-                queue.add(jsonObjectRequest)
+                queue.add(jsonObjectRequest)*/
+
+
+                val url_ = "http://10.0.2.2:8081/user/points/add"
+
+                val stringRequest = StringRequest(
+                    Request.Method.GET, url_,
+                    { response ->
+                        Log.d("Response", "Response: $response")
+                        Toast.makeText(requireContext(), "Added 10 points to the current user", Toast.LENGTH_SHORT).show()
+                    },
+                    { error ->
+                        // Obsługa błędu
+                        Log.e("Volley", "Error: ${error.message}")
+                        Toast.makeText(requireContext(), "Error adding points", Toast.LENGTH_SHORT).show()
+                    }
+                )
+
+                queue.add(stringRequest)
+
 
             } else {
                 Toast.makeText(requireContext(), "Wybierz film", Toast.LENGTH_SHORT).show()
@@ -102,7 +126,7 @@ class BuyTicketFragment : Fragment() {
 
                         val movieTextView = TextView(requireContext()).apply {
                             text = "$movieName - $showDate, $showTime"
-                            textSize = 25f
+                            textSize = 20f
                             setPadding(0, 10, 0, 0)
                         }
 
@@ -140,7 +164,7 @@ class BuyTicketFragment : Fragment() {
         queue.add(jsonArrayRequest)
     }
 
-    private fun saveSelectedMovieToFile(movie: JSONObject) {
+    private fun saveSelectedMovieToFile(movie: JSONObject, type: String) {
         val fileName = "selected_movie.txt"
         val file = File(requireContext().filesDir, fileName)
         Log.d("SaveFile", "Saving movie details to ${file.absolutePath}")
@@ -150,6 +174,7 @@ class BuyTicketFragment : Fragment() {
                     writer.println("Movie Name: ${movie.getString("movieName")}")
                     writer.println("Show Date: ${movie.getString("showDate")}")
                     writer.println("Show Time: ${movie.getString("showTime")}")
+                    writer.println("Ticket Type: $type")
                     writer.println("-----------------------------")
                 }
             }

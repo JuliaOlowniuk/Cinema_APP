@@ -13,36 +13,46 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="8dp"/>
+    <EditText
+        android:id="@+id/place_textinput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Wybierz miejsce"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="40dp"
+        android:inputType="text"
+        android:layout_margin="8dp"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_below="@id/buttonDalej">
+        android:layout_width="760dp"
+        android:layout_height="804dp"
+        android:layout_below="@id/buttonDalej"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="250dp"
             android:layout_height="130dp"
-            android:text="Ekran"
-            android:textColor="@android:color/white"
-            android:textAlignment="center"
-            android:textSize="40sp"
+            android:layout_gravity="center"
             android:background="@android:color/darker_gray"
             android:padding="40dp"
-            android:layout_gravity="center"/>
+            android:text="Ekran"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="40sp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="16dp"/>
+            android:layout_height="16dp" />
 
         <GridLayout
             android:id="@+id/gridLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:rowCount="8"
             android:columnCount="10"
-            android:orientation="horizontal">
-        </GridLayout>
+            android:orientation="horizontal"
+            android:rowCount="8"></GridLayout>
     </LinearLayout>
 
 </RelativeLayout>
