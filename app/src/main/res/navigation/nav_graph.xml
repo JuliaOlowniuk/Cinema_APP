@@ -95,9 +95,6 @@
         <action
             android:id="@+id/action_userProfileFragment2_to_historyFragment"
             app:destination="@id/historyFragment" />
-        <action
-            android:id="@+id/action_userProfileFragment2_to_ratingFragment"
-            app:destination="@id/ratingFragment" />
     </fragment>
     <fragment
         android:id="@+id/offerFragment"
@@ -160,6 +157,9 @@
         <action
             android:id="@+id/action_reservationFragment_to_buyTicketFragment"
             app:destination="@id/buyTicketFragment" />
+        <action
+            android:id="@+id/action_reservationFragment_to_boughtTicketFragment"
+            app:destination="@id/boughtTicketFragment" />
     </fragment>
     <fragment
         android:id="@+id/repertuarFragment"
@@ -183,11 +183,6 @@
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
     <fragment
-        android:id="@+id/ratingFragment"
-        android:name="com.example.myapplication.RatingFragment"
-        android:label="fragment_rating"
-        tools:layout="@layout/fragment_rating" />
-    <fragment
         android:id="@+id/buyTicketFragment"
         android:name="com.example.myapplication.BuyTicketFragment"
         android:label="fragment_buy_ticket"
@@ -199,4 +194,9 @@
             android:id="@+id/action_buyTicketFragment_to_reservationFragment"
             app:destination="@id/reservationFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/boughtTicketFragment"
+        android:name="com.example.myapplication.BoughtTicketFragment"
+        android:label="fragment_bought_ticket"
+        tools:layout="@layout/fragment_bought_ticket" />
 </navigation>

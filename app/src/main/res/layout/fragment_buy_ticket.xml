@@ -17,9 +17,10 @@
     <LinearLayout
         android:id="@+id/movies_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="2220dp"
         android:layout_below="@id/text_repertuar"
         android:orientation="vertical" />
+
     <Button
         android:id="@+id/button_choose_movie"
         android:layout_width="250dp"

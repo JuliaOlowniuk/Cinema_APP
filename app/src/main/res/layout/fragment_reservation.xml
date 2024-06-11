@@ -1,36 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp"
     android:background="@color/background">
 
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="130dp"
-        android:text="Ekran"
-        android:textColor="@android:color/white"
-        android:textAlignment="center"
-        android:textSize="40sp"
-        android:background="@android:color/darker_gray"
-        android:padding="40dp"
-        android:layout_gravity="center"/>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="16dp"/>
-
-    <GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/buttonDalej"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:rowCount="8"
-        android:columnCount="10"
-        android:orientation="horizontal">
+        android:text="Dalej"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8dp"/>
 
-        <!-- Dynamic content for cinema seats will be added here -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/buttonDalej">
 
-    </GridLayout>
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="130dp"
+            android:text="Ekran"
+            android:textColor="@android:color/white"
+            android:textAlignment="center"
+            android:textSize="40sp"
+            android:background="@android:color/darker_gray"
+            android:padding="40dp"
+            android:layout_gravity="center"/>
 
-</LinearLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp"/>
+
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:rowCount="8"
+            android:columnCount="10"
+            android:orientation="horizontal">
+        </GridLayout>
+    </LinearLayout>
+
+</RelativeLayout>

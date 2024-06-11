@@ -32,7 +32,7 @@ class TicketFragment : Fragment() {
         val ulgowyPriceTextView = view.findViewById<TextView>(R.id.ulgowy_price)
         val seniorPriceTextView = view.findViewById<TextView>(R.id.senior_price)
         val dzieciecyPriceTextView = view.findViewById<TextView>(R.id.dzieciecy_price)
-        val url = "http://10.0.2.2:8081/prices/ticket"
+        val url = "http://10.0.2.2:8081/prices/tickets"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,

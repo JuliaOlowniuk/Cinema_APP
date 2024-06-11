@@ -40,10 +40,10 @@ class BarFragment : Fragment() {
             { response ->
                 try {
                     val jsonObject = JSONObject(response)
-                    val popcorn_price = jsonObject.getString("popcorn")
-                    val nachos_price = jsonObject.getString("nachos")
-                    val cola_price = jsonObject.getString("cola")
-                    val sok_price = jsonObject.getString("sok")
+                    val popcorn_price = jsonObject.getDouble("Popcorn").toString()
+                    val nachos_price = jsonObject.getDouble("Nachos").toString()
+                    val cola_price = jsonObject.getDouble("Cola").toString()
+                    val sok_price = jsonObject.getDouble("Sok").toString()
                     popcornPriceTextView.text = popcorn_price
                     nachosPriceTextView.text = nachos_price
                     colaPriceTextView.text = cola_price

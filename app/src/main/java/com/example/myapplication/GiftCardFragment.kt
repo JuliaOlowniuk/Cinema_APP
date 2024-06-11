@@ -39,10 +39,10 @@ class GiftCardFragment : Fragment() {
             { response ->
                 try {
                     val jsonObject = JSONObject(response)
-                    val standardowa_price = jsonObject.getString("Standardowa")
-                    val vip_price = jsonObject.getString("VIP")
-                    val dladzieci_price = jsonObject.getString("Dla dzieci")
-                    val dlasieniorow_price = jsonObject.getString("Dla seniorow")
+                    val standardowa_price = jsonObject.getDouble("Standardowa").toString()
+                    val vip_price = jsonObject.getDouble("VIP").toString()
+                    val dladzieci_price = jsonObject.getDouble("Dla dzieci").toString()
+                    val dlasieniorow_price = jsonObject.getDouble("Dla seniora").toString()
                     standardPriceTextView.text = standardowa_price
                     VIPPriceTextView.text = vip_price
                     dladzieciPriceTextView.text = dladzieci_price
@@ -63,3 +63,4 @@ class GiftCardFragment : Fragment() {
 
 
 }
+

@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.GridLayout
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 
 class ReservationFragment : Fragment() {
 
@@ -21,6 +23,10 @@ class ReservationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val buttonChooseMovie = view.findViewById<Button>(R.id.buttonDalej)
+        buttonChooseMovie.setOnClickListener {
+            findNavController().navigate(R.id.action_reservationFragment_to_boughtTicketFragment)
+        }
 
         // Initialize GridLayout
         val gridLayout: GridLayout = view.findViewById(R.id.gridLayout)
