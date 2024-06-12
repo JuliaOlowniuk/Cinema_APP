@@ -20,7 +20,6 @@ import org.json.JSONException
 import org.json.JSONObject
 import android.graphics.Color
 import android.widget.Toast
-import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import java.io.File
 import java.io.FileOutputStream
@@ -45,58 +44,61 @@ class BuyTicketFragment : Fragment() {
         moviesLayout = view.findViewById(R.id.movies_layout)
         queue = Volley.newRequestQueue(requireContext())
         payPalPaymentProcessor = PayPalPaymentProcessor(requireContext())
+
         buttonpaypal.setOnClickListener {
             if (selectedMovie != null) {
-
-
                 // Procesowanie płatności PayPal
                 payPalPaymentProcessor.processPayment(selectedMovie,
                     onSuccess = {
-                        // Przekierowanie do ekranu rezerwacji po udanej płatności
-                        findNavController().navigate(R.id.action_buyTicketFragment_to_reservationFragment)
+                        // Wyświetlenie komunikatu o udanej płatności
+                        Toast.makeText(requireContext(), "Płatność przebiegła pomyślnie", Toast.LENGTH_SHORT).show()
+                        // Możesz również wyświetlić widok API PayPal lub inne informacje dotyczące transakcji
                     },
                     onFailure = {
                         // Obsługa niepowodzenia płatności PayPal
                         Log.e("PayPal", "Payment failed")
+                        Toast.makeText(requireContext(), "Payment failed", Toast.LENGTH_SHORT).show()
                     })
-
+            } else {
+                Toast.makeText(requireContext(), "Wybierz film", Toast.LENGTH_SHORT).show()
             }
         }
-            buttonChooseMovie.setOnClickListener {
-                val type = typeEditText.text.toString()
-                saveSelectedMovieToFile(selectedMovie!!, type)
-                findNavController().navigate(R.id.action_buyTicketFragment_to_reservationFragment)
-                if (selectedMovie != null) {
 
-                    // Dodawanie punktów użytkownika
-                    val url_ = "http://10.0.2.2:8081/user/points/add"
-                    val stringRequest = StringRequest(
-                        Request.Method.GET, url_,
-                        { response ->
-                            Log.d("Response", "Response: $response")
-                            Toast.makeText(
-                                requireContext(),
-                                "Added 10 points to the current user",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        },
-                        { error ->
-                            // Obsługa błędu
-                            Log.e("Volley", "Error: ${error.message}")
-                            Toast.makeText(
-                                requireContext(),
-                                "Error adding points",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    )
-                    queue.add(stringRequest)
+        buttonChooseMovie.setOnClickListener {
+            val type = typeEditText.text.toString()
+            saveSelectedMovieToFile(selectedMovie!!, type)
+            // Przekierowanie do fragmentu rezerwacji po kliknięciu przycisku "Wybierz film"
+            findNavController().navigate(R.id.action_buyTicketFragment_to_reservationFragment)
+            if (selectedMovie != null) {
+                // Dodawanie punktów użytkownika
+                val url_ = "http://10.0.2.2:8081/user/points/add"
+                val stringRequest = StringRequest(
+                    Request.Method.GET, url_,
+                    { response ->
+                        Log.d("Response", "Response: $response")
+                        Toast.makeText(
+                            requireContext(),
+                            "Added 10 points to the current user",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    },
+                    { error ->
+                        // Obsługa błędu
+                        Log.e("Volley", "Error: ${error.message}")
+                        Toast.makeText(
+                            requireContext(),
+                            "Error adding points",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                )
+                queue.add(stringRequest)
 
-                } else {
-                    // Wyświetlanie komunikatu o wyborze filmu
-                    Toast.makeText(requireContext(), "Wybierz film", Toast.LENGTH_SHORT).show()
-                }
+            } else {
+                // Wyświetlanie komunikatu o wyborze filmu
+                Toast.makeText(requireContext(), "Wybierz film", Toast.LENGTH_SHORT).show()
             }
+        }
 
         fetchMovies()
 
@@ -137,8 +139,6 @@ class BuyTicketFragment : Fragment() {
                                         }
                                     }
                                 }
-
-
                             }
                         }
 

@@ -1,10 +1,10 @@
 package com.example.myapplication
-import com.example.myapplication.PayPalApi
-import com.example.myapplication.RetrofitClient
+
+import android.util.Log
+import android.util.Base64
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.util.Base64
 
 class PayPalService(private val clientId: String, private val clientSecret: String) {
     private val api: PayPalApi = RetrofitClient.instance.create(PayPalApi::class.java)
@@ -18,11 +18,13 @@ class PayPalService(private val clientId: String, private val clientSecret: Stri
                 if (response.isSuccessful) {
                     callback(response.body()?.access_token)
                 } else {
+                    Log.e("PayPalService", "Failed to get access token: ${response.errorBody()?.string()}")
                     callback(null)
                 }
             }
 
             override fun onFailure(call: Call<PayPalAccessToken>, t: Throwable) {
+                Log.e("PayPalService", "Failed to get access token: ${t.message}")
                 callback(null)
             }
         })
@@ -36,11 +38,13 @@ class PayPalService(private val clientId: String, private val clientSecret: Stri
                 if (response.isSuccessful) {
                     callback(response.body())
                 } else {
+                    Log.e("PayPalService", "Payment creation failed: ${response.errorBody()?.string()}")
                     callback(null)
                 }
             }
 
             override fun onFailure(call: Call<PayPalPayment>, t: Throwable) {
+                Log.e("PayPalService", "Payment creation failed: ${t.message}")
                 callback(null)
             }
         })
