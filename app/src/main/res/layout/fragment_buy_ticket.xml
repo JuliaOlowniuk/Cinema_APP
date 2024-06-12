@@ -18,7 +18,7 @@
     <LinearLayout
         android:id="@+id/movies_layout"
         android:layout_width="384dp"
-        android:layout_height="305dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/text_repertuar"
         android:orientation="vertical" />
     <EditText

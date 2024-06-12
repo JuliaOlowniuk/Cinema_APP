@@ -42,7 +42,8 @@ class ReservationFragment : Fragment() {
         queue = Volley.newRequestQueue(requireContext())
         val buttonChooseMovie = view.findViewById<Button>(R.id.buttonDalej)
         val seatnumberEditText = view.findViewById<EditText>(R.id.place_textinput)
-        buttonChooseMovie.setOnClickListener {
+        val buttonRefresh = view.findViewById<Button>(R.id.buttonRefresh)
+        buttonRefresh.setOnClickListener {
             val seatnumber = seatnumberEditText.text.toString()
             saveSelectedMovieToFile(seatnumber)
             val fileName = "selected_movie.txt"
@@ -69,7 +70,10 @@ class ReservationFragment : Fragment() {
             )
 
             queue.add(jsonObjectRequest)
+            findNavController().navigate(R.id.action_reservationFragment_self)
+        }
 
+        buttonChooseMovie.setOnClickListener {
 
             findNavController().navigate(R.id.action_reservationFragment_to_boughtTicketFragment)
         }
@@ -77,9 +81,9 @@ class ReservationFragment : Fragment() {
 
         val gridLayout: GridLayout = view.findViewById(R.id.gridLayout)
 
-        val movieTitle = "BAD BOYS: RIDE OR DIE"
 
-        fetchOccupiedSeats(movieTitle) { occupiedSeats ->
+
+        fetchOccupiedSeats() { occupiedSeats ->
             populateCinemaSeats(gridLayout, occupiedSeats)
         }
 
@@ -153,8 +157,25 @@ class ReservationFragment : Fragment() {
 
         return TicketDetails(movie, seatNumber, ticketType)
     }
-    fun fetchOccupiedSeats(movie: String, callback: (List<Int>) -> Unit) {
-        val url = "http://10.0.2.2:8081/sale?movie=Garfield"
+    fun fetchOccupiedSeats(callback: (List<Int>) -> Unit) {
+        val fileName = "selected_movie.txt"
+        var movie = "ssss"
+        val fileContent = readFileContent(fileName)
+        val lines = fileContent.split("\n")
+        for (line in lines) {
+            val parts = line.split(":")
+            if (parts.size == 2) {
+                val key = parts[0].trim()
+                val value = parts[1].trim()
+
+                when (key) {
+                    "Movie Name" -> movie = value
+                }
+            }
+        }
+
+        val url = "http://10.0.2.2:8081/sale?movie=$movie"
+        Log.d("link", url)
 
 
         val requestQueue: RequestQueue = Volley.newRequestQueue(context)

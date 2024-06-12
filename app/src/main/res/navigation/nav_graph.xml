@@ -160,6 +160,9 @@
         <action
             android:id="@+id/action_reservationFragment_to_boughtTicketFragment"
             app:destination="@id/boughtTicketFragment" />
+        <action
+            android:id="@+id/action_reservationFragment_self"
+            app:destination="@id/reservationFragment" />
     </fragment>
     <fragment
         android:id="@+id/repertuarFragment"
