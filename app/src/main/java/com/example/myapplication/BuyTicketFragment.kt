@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -18,10 +19,8 @@ import com.android.volley.toolbox.Volley
 import org.json.JSONException
 import org.json.JSONObject
 import android.graphics.Color
-import android.widget.EditText
 import android.widget.Toast
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import java.io.File
 import java.io.FileOutputStream
@@ -32,6 +31,7 @@ class BuyTicketFragment : Fragment() {
     private lateinit var moviesLayout: LinearLayout
     private lateinit var queue: RequestQueue
     private var selectedMovie: JSONObject? = null
+    private lateinit var payPalPaymentProcessor: PayPalPaymentProcessor
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,46 +43,26 @@ class BuyTicketFragment : Fragment() {
         val typeEditText = view.findViewById<EditText>(R.id.editText_movie_input)
         moviesLayout = view.findViewById(R.id.movies_layout)
         queue = Volley.newRequestQueue(requireContext())
+        payPalPaymentProcessor = PayPalPaymentProcessor(requireContext())
 
         buttonChooseMovie.setOnClickListener {
             if (selectedMovie != null) {
                 val type = typeEditText.text.toString()
                 saveSelectedMovieToFile(selectedMovie!!, type)
-                findNavController().navigate(R.id.action_buyTicketFragment_to_reservationFragment)
-                Log.d("dane", selectedMovie!!.toString())
 
-               /* data class TicketDetails(
-                    val movie: String,
-                    val seatNumber: Int,
-                    val ticketType: String,
-                )
-
-                val movie = selectedMovie!!.getString("movieName")
-                val seatNumber = 5
-                val ticketDetails = TicketDetails(movie, seatNumber, type)
-
-                val url = "http://10.0.2.2:8081/tickets/add"
-                val ticketJson = JSONObject().apply {
-                    put("movie", ticketDetails.movie)
-                    put("seatNumber", ticketDetails.seatNumber)
-                    put("ticketType", ticketDetails.ticketType)
-                }
-                val jsonObjectRequest = JsonObjectRequest(
-                    Request.Method.POST, url, ticketJson,
-                    { response ->
-                        Toast.makeText(requireContext(), "Ticket added successfully", Toast.LENGTH_SHORT).show()
+                // Procesowanie płatności PayPal
+                payPalPaymentProcessor.processPayment(selectedMovie,
+                    onSuccess = {
+                        // Przekierowanie do ekranu rezerwacji po udanej płatności
+                        findNavController().navigate(R.id.action_buyTicketFragment_to_reservationFragment)
                     },
-                     { error ->
-                        Log.e("Volley", "Error: ${error.message}")
-                        Toast.makeText(requireContext(), "Error adding ticket", Toast.LENGTH_SHORT).show()
-                    }
-                )
+                    onFailure = {
+                        // Obsługa niepowodzenia płatności PayPal
+                        Log.e("PayPal", "Payment failed")
+                    })
 
-                queue.add(jsonObjectRequest)*/
-
-
+                // Dodawanie punktów użytkownika
                 val url_ = "http://10.0.2.2:8081/user/points/add"
-
                 val stringRequest = StringRequest(
                     Request.Method.GET, url_,
                     { response ->
@@ -95,11 +75,10 @@ class BuyTicketFragment : Fragment() {
                         Toast.makeText(requireContext(), "Error adding points", Toast.LENGTH_SHORT).show()
                     }
                 )
-
                 queue.add(stringRequest)
 
-
             } else {
+                // Wyświetlanie komunikatu o wyborze filmu
                 Toast.makeText(requireContext(), "Wybierz film", Toast.LENGTH_SHORT).show()
             }
         }
@@ -116,13 +95,11 @@ class BuyTicketFragment : Fragment() {
             Request.Method.GET, url, null,
             { response ->
                 try {
-                    Log.d("Response", "Response: $response")
                     for (i in 0 until response.length()) {
                         val movie = response.getJSONObject(i)
                         val movieName = movie.getString("movieName")
                         val showDate = movie.getString("showDate")
                         val showTime = movie.getString("showTime")
-                        Log.d("dane", movieName)
 
                         val movieTextView = TextView(requireContext()).apply {
                             text = "$movieName - $showDate, $showTime"
@@ -183,6 +160,4 @@ class BuyTicketFragment : Fragment() {
             Log.e("SaveFile", "Error saving movie details", e)
         }
     }
-
-
 }
