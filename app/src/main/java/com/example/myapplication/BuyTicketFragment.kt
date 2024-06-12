@@ -40,15 +40,14 @@ class BuyTicketFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_buy_ticket, container, false)
 
         val buttonChooseMovie = view.findViewById<Button>(R.id.button_choose_movie)
+        val buttonpaypal = view.findViewById<Button>(R.id.button_pay_with_paypal)
         val typeEditText = view.findViewById<EditText>(R.id.editText_movie_input)
         moviesLayout = view.findViewById(R.id.movies_layout)
         queue = Volley.newRequestQueue(requireContext())
         payPalPaymentProcessor = PayPalPaymentProcessor(requireContext())
-
-        buttonChooseMovie.setOnClickListener {
+        buttonpaypal.setOnClickListener {
             if (selectedMovie != null) {
-                val type = typeEditText.text.toString()
-                saveSelectedMovieToFile(selectedMovie!!, type)
+
 
                 // Procesowanie płatności PayPal
                 payPalPaymentProcessor.processPayment(selectedMovie,
@@ -61,27 +60,43 @@ class BuyTicketFragment : Fragment() {
                         Log.e("PayPal", "Payment failed")
                     })
 
-                // Dodawanie punktów użytkownika
-                val url_ = "http://10.0.2.2:8081/user/points/add"
-                val stringRequest = StringRequest(
-                    Request.Method.GET, url_,
-                    { response ->
-                        Log.d("Response", "Response: $response")
-                        Toast.makeText(requireContext(), "Added 10 points to the current user", Toast.LENGTH_SHORT).show()
-                    },
-                    { error ->
-                        // Obsługa błędu
-                        Log.e("Volley", "Error: ${error.message}")
-                        Toast.makeText(requireContext(), "Error adding points", Toast.LENGTH_SHORT).show()
-                    }
-                )
-                queue.add(stringRequest)
-
-            } else {
-                // Wyświetlanie komunikatu o wyborze filmu
-                Toast.makeText(requireContext(), "Wybierz film", Toast.LENGTH_SHORT).show()
             }
         }
+            buttonChooseMovie.setOnClickListener {
+                val type = typeEditText.text.toString()
+                saveSelectedMovieToFile(selectedMovie!!, type)
+                findNavController().navigate(R.id.action_buyTicketFragment_to_reservationFragment)
+                if (selectedMovie != null) {
+
+                    // Dodawanie punktów użytkownika
+                    val url_ = "http://10.0.2.2:8081/user/points/add"
+                    val stringRequest = StringRequest(
+                        Request.Method.GET, url_,
+                        { response ->
+                            Log.d("Response", "Response: $response")
+                            Toast.makeText(
+                                requireContext(),
+                                "Added 10 points to the current user",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        },
+                        { error ->
+                            // Obsługa błędu
+                            Log.e("Volley", "Error: ${error.message}")
+                            Toast.makeText(
+                                requireContext(),
+                                "Error adding points",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    )
+                    queue.add(stringRequest)
+
+                } else {
+                    // Wyświetlanie komunikatu o wyborze filmu
+                    Toast.makeText(requireContext(), "Wybierz film", Toast.LENGTH_SHORT).show()
+                }
+            }
 
         fetchMovies()
 

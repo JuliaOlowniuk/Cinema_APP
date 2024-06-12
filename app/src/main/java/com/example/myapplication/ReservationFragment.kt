@@ -4,17 +4,19 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.graphics.Color
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.GridLayout
 import android.widget.Toast
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.android.volley.Request
 import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
@@ -75,20 +77,30 @@ class ReservationFragment : Fragment() {
 
         val gridLayout: GridLayout = view.findViewById(R.id.gridLayout)
 
-        populateCinemaSeats(gridLayout)
+        val movieTitle = "BAD BOYS: RIDE OR DIE"
+
+        fetchOccupiedSeats(movieTitle) { occupiedSeats ->
+            populateCinemaSeats(gridLayout, occupiedSeats)
+        }
 
 
     }
 
-    private fun populateCinemaSeats(gridLayout: GridLayout) {
+    private fun populateCinemaSeats(gridLayout: GridLayout, occupiedSeats: List<Int>) {
         val rows = 8
         val cellsInRow = 10
 
         for (rowIndex in 0 until rows) {
             for (cellIndex in 0 until cellsInRow) {
                 val seatNumber = rowIndex * cellsInRow + cellIndex + 1
-
                 val seatView = createSeatView()
+
+                // Sprawdzamy, czy miejsce jest zajęte
+                if (occupiedSeats.contains(seatNumber)) {
+                    seatView.setBackgroundColor(Color.RED)
+                } else {
+                    seatView.setBackgroundColor(Color.WHITE)
+                }
 
                 gridLayout.addView(seatView)
             }
@@ -97,19 +109,13 @@ class ReservationFragment : Fragment() {
 
     private fun createSeatView(): View {
         val seatView = View(requireContext())
-
         val sizeInPx = 150
-
         val layoutParams = ViewGroup.MarginLayoutParams(sizeInPx, sizeInPx)
-
         layoutParams.setMargins(8, 8, 8, 8)
-
         seatView.layoutParams = layoutParams
-
-        seatView.setBackgroundColor(Color.White.toArgb())
-
         return seatView
     }
+
     private fun saveSelectedMovieToFile(number: String) {
         val fileName = "selected_movie.txt"
         val file = File(requireContext().filesDir, fileName)
@@ -147,7 +153,30 @@ class ReservationFragment : Fragment() {
 
         return TicketDetails(movie, seatNumber, ticketType)
     }
+    fun fetchOccupiedSeats(movie: String, callback: (List<Int>) -> Unit) {
+        val url = "http://10.0.2.2:8081/sale?movie=Garfield"
 
+
+        val requestQueue: RequestQueue = Volley.newRequestQueue(context)
+
+        val jsonArrayRequest = JsonArrayRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                val occupiedSeats = mutableListOf<Int>()
+                Log.d("seats", "$response")
+                for (i in 0 until response.length()) {
+                    val seat = response.getJSONObject(i)
+                    occupiedSeats.add(seat.getInt("seatNumber"))
+                }
+                callback(occupiedSeats)
+            },
+            { error ->
+                error.printStackTrace()
+            }
+        )
+
+        requestQueue.add(jsonArrayRequest)
+    }
     private fun readFileContent(fileName: String): String {
         return try {
             val file = File(requireContext().filesDir, fileName)
