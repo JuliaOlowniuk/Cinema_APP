@@ -65,7 +65,7 @@ class ReservationFragment : Fragment() {
                 },
                 { error ->
                     Log.e("Volley", "Error: ${error.message}")
-                    Toast.makeText(requireContext(), "Error adding ticket", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(requireContext(), "Error adding ticket", Toast.LENGTH_SHORT).show()
                 }
             )
 
