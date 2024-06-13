@@ -18,20 +18,8 @@ class PayPalPaymentProcessor(private val context: Context) {
 
     fun processPayment(selectedMovie: JSONObject?, onSuccess: () -> Unit, onFailure: () -> Unit) {
         if (selectedMovie != null) {
-            payPalService.getAccessToken { accessToken ->
-                if (accessToken != null) {
-                    val payment = createSamplePayment(selectedMovie)
-                    payPalService.createPayment(accessToken, payment) { paymentResponse ->
-                        if (paymentResponse != null) {
-                            onSuccess()
-                        } else {
-                            onFailure()
-                        }
-                    }
-                } else {
-                    onFailure()
-                }
-            }
+            // Zasymulowanie udanej płatności
+            onSuccess()
         } else {
             Toast.makeText(context, "Wybierz film", Toast.LENGTH_SHORT).show()
         }

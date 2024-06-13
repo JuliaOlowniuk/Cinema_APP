@@ -52,7 +52,6 @@ class BuyTicketFragment : Fragment() {
                     onSuccess = {
                         // Wyświetlenie komunikatu o udanej płatności
                         Toast.makeText(requireContext(), "Płatność przebiegła pomyślnie", Toast.LENGTH_SHORT).show()
-                        // Możesz również wyświetlić widok API PayPal lub inne informacje dotyczące transakcji
                     },
                     onFailure = {
                         // Obsługa niepowodzenia płatności PayPal
@@ -65,11 +64,9 @@ class BuyTicketFragment : Fragment() {
         }
 
         buttonChooseMovie.setOnClickListener {
-            val type = typeEditText.text.toString()
-            saveSelectedMovieToFile(selectedMovie!!, type)
-            // Przekierowanie do fragmentu rezerwacji po kliknięciu przycisku "Wybierz film"
-            findNavController().navigate(R.id.action_buyTicketFragment_to_reservationFragment)
             if (selectedMovie != null) {
+                val type = typeEditText.text.toString()
+                saveSelectedMovieToFile(selectedMovie!!, type)
                 // Dodawanie punktów użytkownika
                 val url_ = "http://10.0.2.2:8081/user/points/add"
                 val stringRequest = StringRequest(
@@ -93,10 +90,11 @@ class BuyTicketFragment : Fragment() {
                     }
                 )
                 queue.add(stringRequest)
-
+                // Przekierowanie do fragmentu rezerwacji po kliknięciu przycisku "Wybierz film"
+                findNavController().navigate(R.id.action_buyTicketFragment_to_reservationFragment)
             } else {
                 // Wyświetlanie komunikatu o wyborze filmu
-                Toast.makeText(requireContext(), "Wybierz film", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Wybierz film i dokonaj płatności", Toast.LENGTH_SHORT).show()
             }
         }
 
