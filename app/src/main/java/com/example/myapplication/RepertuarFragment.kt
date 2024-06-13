@@ -24,7 +24,7 @@ import retrofit2.Response
 class RepertuarFragment : Fragment() {
 
     private lateinit var moviesLayout: LinearLayout
-    private val apiKey = "b86b2f78b9fa1efd17365a41927922e1"
+    private val apiKey = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

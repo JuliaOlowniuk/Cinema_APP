@@ -11,8 +11,8 @@ class PayPalPaymentProcessor(private val context: Context) {
     init {
         // Inicjalizacja PayPalService z danymi konta sandbox
         payPalService = PayPalService(
-            "AbKQFxx6bJd0aJr1secOycWDOQ40ah0FGhxkKYI7c4fNtA22r4A6YfsObKNaEkzpqEyWV18Yb35B4yvy",  // Client ID
-            "EFSCJ5pibKqY497C_26h-rmWg6yPgzjxBwhYls4SWiDfAHdxSj8JJx4VqQ__GvEYaFQ8MEtxF7GoOv8H"  // Client Secret
+            "",  // Client ID
+            ""  // Client Secret
         )
     }
 
